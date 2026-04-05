@@ -9,6 +9,7 @@ while(!exit)
 {
     Console.WriteLine("1.- Name Generator");
     Console.WriteLine("2.- Head/Tails");
+    Console.WriteLine("3.- Temperature Converter");
     Console.WriteLine("E - Exit");
 
     string? userSelection = Console.ReadLine();
@@ -33,7 +34,12 @@ while(!exit)
     else if (intSelection == 2)
     {
         HeadTails ht = new HeadTails();
-        ht.Greetings();
+        ht.Greeting();
+    }
+    else if (intSelection == 3)
+    {
+        TemperatureConverter tc = new TemperatureConverter();
+        tc.MainTemperatureProcess();
     }
 
 }
