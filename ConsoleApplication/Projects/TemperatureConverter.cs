@@ -15,38 +15,6 @@ public class TemperatureConverter
     {
         Console.WriteLine("Welcome to Temperature Converter!!!");
     }
-
-    private void DisplayMenu()
-    {
-        Console.WriteLine("What would you like to do?");
-        Console.WriteLine("1.- From Celsius to Fahrenheit");
-        Console.WriteLine("2.- From Fahrenheit to Celsius");
-        Console.WriteLine("E - Exit");
-    }
-
-    private (bool isValid, int userSelectionInt) EvaluateUserInput()
-    {
-        string? userSelectionstr = Console.ReadLine();
-        bool isValidSelection = int.TryParse(userSelectionstr, out int userSelectionInt);
-
-        if (string.Equals(userSelectionstr, "E", StringComparison.OrdinalIgnoreCase))
-            return (false, 3);
-
-        if (!isValidSelection)
-        {
-            Console.WriteLine("Invalid selection");
-            return (false, 0);
-        }
-
-        if (userSelectionInt != 1 && userSelectionInt != 2)
-        {
-            Console.WriteLine("Choose 1 or 2");
-            return (false, 0);
-        }
-
-        return (true, userSelectionInt);
-    }
-
     private void Calculate()
     {
         bool keepCalculate = true;
@@ -57,7 +25,7 @@ public class TemperatureConverter
 
             var (isValid, userSelectionInt) = EvaluateUserInput();
 
-            if (!isValid && userSelectionInt == 3)
+            if (isValid && userSelectionInt == 3)
             {
                 keepCalculate = false;
                 continue;
@@ -73,6 +41,37 @@ public class TemperatureConverter
         }
     }
 
+    private void DisplayMenu()
+    {
+        Console.WriteLine("What would you like to do?");
+        Console.WriteLine("1.- From Celsius to Fahrenheit");
+        Console.WriteLine("2.- From Fahrenheit to Celsius");
+        Console.WriteLine("E - Exit");
+    }
+
+    private (bool isValid, int userSelectionInt) EvaluateUserInput()
+    {
+        string? userSelectionstr = Console.ReadLine();
+        bool isValidSelection = int.TryParse(userSelectionstr, out int userSelectionInt);
+
+        if (string.Equals(userSelectionstr, "E", StringComparison.OrdinalIgnoreCase))
+            return (true, 3);
+
+        if (!isValidSelection)
+        {
+            Console.WriteLine("Invalid selection");
+            return (false, 0);
+        }
+
+        if (userSelectionInt != 1 && userSelectionInt != 2)
+        {
+            Console.WriteLine("Choose 1 or 2. E to exit.");
+            return (false, 0);
+        }
+
+        return (true, userSelectionInt);
+    }
+    
     private void CalculateTemperature(Temperatures scale)
     {
         bool calculateTemperature = true;

@@ -41,6 +41,10 @@ while(!exit)
         TemperatureConverter tc = new TemperatureConverter();
         tc.MainTemperatureProcess();
     }
+    else if(intSelection == 4)
+    {
+        AgeInSeconds ageIn = new AgeInSeconds();
+    }
 
 }
 
